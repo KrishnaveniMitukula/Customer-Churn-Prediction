@@ -127,7 +127,7 @@ python explainability.py
 streamlit run app.py
 ```
 
-The dashboard will be available at **http://localhost:8501**.
+The dashboard will be available locally at **http://localhost:8501** (or view the live cloud deployment at [customer-churn-prediction.streamlit.app](https://customer-churn-prediction-ognbl7uxzy9hpr9r8pckng.streamlit.app/)).
 
 ---
 
@@ -162,7 +162,7 @@ docker run -p 8501:8501 \
   churn-prediction
 ```
 
-Access the dashboard at **http://localhost:8501**.
+Access the dashboard locally at **http://localhost:8501** or access the live app [here](https://customer-churn-prediction-ognbl7uxzy9hpr9r8pckng.streamlit.app/).
 
 ---
 
