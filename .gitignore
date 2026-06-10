@@ -1,0 +1,68 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# .gitignore — Customer Churn Prediction
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.whl
+
+# ── Virtual Environments ────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# ── IDE / Editor ─────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ── OS Files ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.lnk
+
+# ── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Data (keep CSV tracked, ignore large generated files) ────────────────────
+data/cleaned_churn_data.csv
+
+# ── Model Artifacts (generated, not tracked in source control) ───────────────
+model/*.pkl
+
+# ── Generated Images (reproducible from scripts) ────────────────────────────
+images/*.png
+images/*.html
+
+# ── Reports (reproducible) ──────────────────────────────────────────────────
+reports/*.txt
+
+# ── Docker ───────────────────────────────────────────────────────────────────
+.dockerignore
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Misc ─────────────────────────────────────────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/

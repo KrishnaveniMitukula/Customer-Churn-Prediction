@@ -1,0 +1,45 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# docker-compose.yml — Customer Churn Prediction Dashboard
+# ══════════════════════════════════════════════════════════════════════════════
+# Usage:
+#   docker-compose up --build        (build & run)
+#   docker-compose up -d             (detached mode)
+#   docker-compose down              (stop & remove)
+#   docker-compose logs -f churn-app (follow logs)
+#
+# Author: Krishnaveni Mitukula
+# ══════════════════════════════════════════════════════════════════════════════
+
+services:
+  churn-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: churn-prediction-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data:ro
+      - ./model:/app/model:ro
+      - ./images:/app/images
+      - ./reports:/app/reports
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+        reservations:
+          memory: 512M
+          cpus: "0.5"
