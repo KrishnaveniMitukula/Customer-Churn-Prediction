@@ -44,8 +44,7 @@ desktop.ini
 # ── Data (keep CSV tracked, ignore large generated files) ────────────────────
 data/cleaned_churn_data.csv
 
-# ── Model Artifacts (generated, not tracked in source control) ───────────────
-model/*.pkl
+# model/*.pkl (Commented out to allow committing lightweight models for live Streamlit deployment)
 
 # ── Generated Images (reproducible from scripts) ────────────────────────────
 images/*.png
