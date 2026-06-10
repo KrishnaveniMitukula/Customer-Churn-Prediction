@@ -5,7 +5,7 @@
 ### AI-Powered Risk Assessment & Retention Intelligence Engine
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.36+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://customer-churn-prediction-ognbl7uxzy9hpr9r8pckng.streamlit.app/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-2.1+-017CEE?style=for-the-badge&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io)
 [![SHAP](https://img.shields.io/badge/SHAP-0.46+-B721FF?style=for-the-badge)](https://shap.readthedocs.io)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
@@ -215,21 +215,29 @@ Access the dashboard at **http://localhost:8501**.
 
 ## 🔬 Model Performance
 
-The XGBoost model is tuned via RandomizedSearchCV with the following configuration:
+The model is tuned using a 5-fold Stratified Cross-Validation Randomized Search on the XGBoost classifier. 
 
-| Parameter | Search Space |
-|-----------|-------------|
-| `n_estimators` | 100 – 800 |
-| `max_depth` | 3 – 12 |
-| `learning_rate` | 0.01 – 0.30 |
-| `subsample` | 0.6 – 1.0 |
-| `colsample_bytree` | 0.5 – 1.0 |
-| `gamma` | 0 – 5 |
-| `min_child_weight` | 1 – 10 |
+### Best Tuned Parameters
+* `colsample_bytree`: `0.5061`
+* `gamma`: `4.8494`
+* `learning_rate`: `0.0225`
+* `max_depth`: `7`
+* `min_child_weight`: `6`
+* `n_estimators`: `312`
+* `subsample`: `0.8215`
 
-**Class imbalance** is handled via `scale_pos_weight` (ratio of negative to positive samples).
+### Evaluation Metrics (at Optimal Threshold of 0.59)
+To optimize for business intervention, the decision threshold was swept to maximize the F1-Score:
 
-**Evaluation metrics** are computed at the F1-optimized threshold and include Accuracy, Precision, Recall, F1-Score, ROC-AUC, and full confusion matrix analysis. Detailed results are saved to `reports/model_report.txt`.
+| Metric | Baseline XGBoost | Tuned XGBoost (Optimal Threshold) |
+|--------|------------------|------------------------------------|
+| **Accuracy** | 75.66% | **78.42%** |
+| **Precision** | 53.36% | **57.35%** |
+| **Recall** | 65.78% | **72.99%** |
+| **F1-Score** | 58.92% | **64.24%** |
+| **ROC-AUC** | 0.8250 | **0.8470** |
+
+Detailed evaluation metrics and plots are saved to the [model_report.txt](file:///c:/Users/KRISH/Downloads/Customer-Churn-Prediction/reports/model_report.txt) and `images/` directories.
 
 ---
 
